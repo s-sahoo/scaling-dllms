@@ -1,0 +1,10 @@
+name:  6M
+type: ddit
+hidden_size:  256
+cond_dim: 128
+length: 1024
+n_blocks:  6
+n_heads:  4
+scale_by_sigma: True
+dropout: 0.1
+tie_word_embeddings: False

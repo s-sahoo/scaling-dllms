@@ -1,0 +1,5 @@
+train: nvidia
+valid: nvidia
+mode: phase1
+tokenizer_name_or_path: ${hydra:runtime.cwd}/tokenizers/multiMixV8.gpt4o_nc_sd.500000.128k.vocab.json
+cache_dir: /lustre/fsw/portfolios/llmservice/projects/llmservice_nemo_difflm/data/nemotron_phase1_1t/

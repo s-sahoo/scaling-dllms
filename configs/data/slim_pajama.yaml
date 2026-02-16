@@ -1,0 +1,4 @@
+train: slim_pajama
+valid: slim_pajama
+tokenizer_name_or_path: ${hydra:runtime.cwd}/tokenizers/tinyllama_tokenizer.model
+cache_dir: /lustre/fsw/llmservice_nemo_reasoning/data/slim_pajama_tokenized_new_3

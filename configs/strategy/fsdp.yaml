@@ -1,0 +1,6 @@
+_target_: lightning.pytorch.strategies.FSDPStrategy
+sharding_strategy: FULL_SHARD  # FULL_SHARD provides optimizer + gradient + parameter sharding
+cpu_offload: false  # Set to true to offload optimizer states to CPU
+limit_all_gathers: true  # Limit all-gather operations for memory efficiency
+use_orig_params: true
+sync_module_states: true

@@ -1,0 +1,107 @@
+defaults:
+  - _self_
+  - /callbacks: [checkpoint_every_n_steps, checkpoint_monitor, learning_rate_monitor]
+  - /data: openwebtext
+  - /model: small
+  - /strategy: ddp
+  - /noise: log-linear
+  - /lr_scheduler: cosine_decay_warmup
+  - /prior: none
+  - /algo: mdlm
+
+mode: train  # train / ppl_eval / sample_eval
+
+seed: 1
+
+loader:
+  global_batch_size: 256
+  eval_global_batch_size: ${.global_batch_size}
+  # Note: batch_size and eval_batch_size are **per machine**
+  batch_size: ${div_up:${.global_batch_size}, ${eval:${trainer.devices} * ${trainer.num_nodes}}}
+  eval_batch_size: ${div_up:${.eval_global_batch_size}, ${eval:${trainer.devices} * ${trainer.num_nodes}}}
+  num_workers: ${eval:"len(__import__('os').sched_getaffinity(0))"}
+  n_chunks: 1
+  pin_memory: True
+
+sampling:
+  predictor: ancestral  # ancestral_cache (only for MDLM), ancestral, analytic, block_autoregressive
+  sar_steps: 1
+  steps: 1000
+  noise_removal: ancestral  # 'ancestral', 'greedy', 'none'
+  use_float64: True
+  p_nucleus: 1.0
+  num_samples: ${loader.eval_global_batch_size}  # Total number of samples.
+  kv_cache: False
+  num_log_samples: 2
+
+training:
+  flops_1e18: 1
+  ema: -1  # -1 to disable
+  antithetic_sampling: True
+  sampling_eps: 1e-3
+  finetune_path: ''
+  ssl_ratio: 0.0
+
+eval:
+  checkpoint_path: ''  # Used to evaluate a checkpoint after training.
+  disable_ema: True
+  compute_generative_perplexity: False
+  perplexity_batch_size: 8
+  compute_perplexity_on_sanity: False
+  gen_ppl_eval_model_name_or_path: meta-llama/Llama-2-7b-hf  # gpt2-large, meta-llama/Llama-2-7b-hf
+  generate_samples: True
+  generated_samples_path: ${cwd:}/samples.json
+
+optim:
+  weight_decay: 1e-1
+  lr: 2e-4
+  min_lr: 2e-5
+  beta1: 0.9
+  beta2: 0.95
+  eps: 1e-8
+
+trainer:
+  _target_: lightning.Trainer
+  accelerator: cuda
+  num_nodes: 1
+  devices: ${device_count:}
+  accumulate_grad_batches: ${div_up:${loader.global_batch_size}, ${eval:${trainer.devices} * ${loader.batch_size} * ${trainer.num_nodes}}}
+  gradient_clip_val: 1.0
+  precision: 'bf16'
+  num_sanity_val_steps: 2
+  max_steps: ${utils.flops_to_max_steps:${training.flops_1e18}, ${loader.global_batch_size}, ${hydra:runtime.cwd}/configs/flops/${model.name}.json}
+  log_every_n_steps: 1000
+  limit_train_batches: 1.0   # train on full dataset, can be used to toggle quick run
+  limit_val_batches: 1.0     # validate on full dataset, can be used to toggle quick run
+  val_check_interval: 10000
+
+wandb:
+  project: scaling-dllms
+  entity: aiapps
+  notes: Scaling Laws for Diffusion-LLMs
+  group: null
+  job_type: null
+  name: null
+  id: ${.name}_${seed}
+  tags:
+    - "chinchilla-v2"
+    - "flops_1e18-${training.flops_1e18}"
+    - ${algo.name}
+    - ${model.name}
+
+huggingface:
+  cache_dir: /lustre/fsw/convai_convaird_nemo-speech/users/ssahoo/hf-cache
+  instantiate_eval_model: False
+
+hydra:
+  run:
+    dir: ./outputs/${data.train}/${now:%Y.%m.%d}/${now:%H%M%S}
+  job:
+    chdir: true
+
+checkpointing:
+  # Use custom `save_dir` if, e.g., saving to S3 bucket, otherwise leave this parameter as is
+  save_dir: ${cwd:}
+  # Note: `checkpoints` path should correspond to `checkpoint_every_n_steps.dirpath`
+  resume_from_ckpt: true
+  resume_ckpt_path: ${.save_dir}/checkpoints/last.ckpt

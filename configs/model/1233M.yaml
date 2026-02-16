@@ -1,0 +1,10 @@
+name:  1233M
+type: ddit
+hidden_size:  1792
+cond_dim: 128
+length: 1024
+n_blocks:  24
+n_heads:  14
+scale_by_sigma: True
+dropout: 0.1
+tie_word_embeddings: False

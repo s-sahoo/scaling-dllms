@@ -1,0 +1,4 @@
+_target_: utils.WarmupCosineLR
+total_steps: ${trainer.max_steps}
+warmup_steps: ${max:${eval:0.01*${trainer.max_steps}}, 100}
+min_lr: ${optim.min_lr}

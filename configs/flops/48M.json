@@ -1,0 +1,13 @@
+{
+    "vocab_size": 32001,
+    "non_embed_params": 58543724,
+    "flops": 222747000000.0,
+    "macs": "111.138 GMACs",
+    "params": 76976300,
+    "context_length": 2048,
+    "model_hidden_size": 576,
+    "model_name": "48M",
+    "model_type": "ddit",
+    "model_n_blocks": 9,
+    "model_n_heads": 9
+}
