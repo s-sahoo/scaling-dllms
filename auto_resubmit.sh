@@ -35,22 +35,11 @@ while getopts "n:d:m:b:N:t:f:c:D:p:" opt; do
 done
 
 
-if [ $cluster == 'eos' ]; then
-    CKPT_BASE=/lustre/fsw/convai_convaird_nemo-speech/users/ssahoo
-    if [ $dataset == 'slim_pajama' ]; then
-        DATA_DIR=/lustre/fsw/llmservice_nemo_reasoning/data/slim_pajama_tokenized_new_3
-    else
-        DATA_DIR=/lustre/fsw/llmservice_nemo_reasoning/data/nemotron_phase${phase}_1t/
-    fi
-    extra_args=""
+CKPT_BASE=/lustre/fsw/portfolios/llmservice/projects/llmservice_nemo_difflm/users/susahoo
+if [ $dataset == 'slim_pajama' ]; then
+    DATA_DIR=/lustre/fsw/portfolios/llmservice/projects/llmservice_nemo_difflm/data/slim_pajama_tokenized_new_3
 else
-    CKPT_BASE=/lustre/fsw/portfolios/llmservice/projects/llmservice_nemo_difflm/users/susahoo
-    if [ $dataset == 'slim_pajama' ]; then
-        DATA_DIR=/lustre/fsw/portfolios/llmservice/projects/llmservice_nemo_difflm/data/slim_pajama_tokenized_new_3
-    else
-        DATA_DIR=/lustre/fsw/portfolios/llmservice/projects/llmservice_nemo_difflm/data/nemotron_phase${phase}_1t
-    fi
-    extra_args="--gres=gpu:8"
+    DATA_DIR=/lustre/fsw/portfolios/llmservice/projects/llmservice_nemo_difflm/data/nemotron_phase${phase}_1t
 fi
 
 if [ $flops == -1 ]; then
@@ -104,7 +93,7 @@ do
     then
         echo "Submitting job ${i}"
         OUTPUT=$(sbatch -J ${wandb_name} \
-            $extra_args \
+            --gres=gpu:8 \
             -N $num_nodes $SUBFILE \
             --ckpt_dir $ckpt_dir \
             --wandb_name $wandb_name \
@@ -119,7 +108,7 @@ do
     else
         echo "Submitting job ${i} w/ dependency on jobid ${PREV_JOBID}"
         OUTPUT=$(sbatch --dependency=afterany:${PREV_JOBID} -J ${wandb_name} \
-            $extra_args \
+            --gres=gpu:8 \
             -N $num_nodes $SUBFILE \
             --ckpt_dir $ckpt_dir \
             --wandb_name $wandb_name \
