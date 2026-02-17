@@ -18,7 +18,7 @@ In this repo, we release the `state-of-the-art` diffusion language models:
 2. **Uniform-state Diffusion Model: Duo**
     > [Sahoo et al., "The Diffusion Duality", ICML 2025.](https://arxiv.org/abs/2506.10892)
 3. **AR-MDLM interpolating method: Eso-LMs**
-    > [Sahoo et al., "Esoteric Language Models", ArXiv 2025.](https://arxiv.org/abs/2506.01928)
+    > [Sahoo et al., "Esoteric Language Models", arXiv 2025.](https://arxiv.org/abs/2506.01928)
 
 # Scaling Laws
 
