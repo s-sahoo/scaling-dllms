@@ -2,8 +2,8 @@
 By [Subham Sekhar Sahoo](https://s-sahoo.github.io), [Jean-Marie Lamercier](https://scholar.google.com/citations?user=dJFuXCQAAAAJ&hl=fr), [Justin Deschenaux](https://jdeschena.com), [Zhihan Yang](https://zhihanyang2022.github.io), [Jingyu Liu](https://jingyu6.github.io),
 [John Thickstun](https://johnthickstun.com), [Ante Jukic](https://scholar.google.com/citations?user=ZleK6ccAAAAJ&hl=en)
 
-[![deploy](https://img.shields.io/badge/Blog%20%20-8A2BE2)](http://s-sahoo.github.io/duo)
-[![arXiv](https://img.shields.io/badge/arXiv-2406.07524-red.svg)](https://arxiv.org/abs/2506.10892v1)
+[![deploy](https://img.shields.io/badge/Blog%20%20-8A2BE2)](http://s-sahoo.github.io/scaling-dllms)
+[![arXiv](https://img.shields.io/badge/arXiv-2406.07524-red.svg)](https://arxiv.org/abs/2506.10892|)
 
 # Update: 1.7B Checkpoints will be released on March 1st, 2026.
 
