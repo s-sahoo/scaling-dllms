@@ -58,3 +58,21 @@ in the following command:
 ## Evaluation
 
  1.7B Checkpoints will be released on March 1st, 2026.
+
+
+ ## Acknowledgements
+
+This repository was built off of [MDLM](https://github.com/kuleshov-group/mdlm), [DUO](https://github.com/s-sahoo/duo), and [Eso-LMs](https://github.com/s-sahoo/Eso-LMs).
+
+<!-- ## Citation
+```
+@misc{sahoo2025esotericlanguagemodels,
+      title={Esoteric Language Models}, 
+      author={Subham Sekhar Sahoo and Zhihan Yang and Yash Akhauri and Johnna Liu and Deepansha Singh and Zhoujun Cheng and Zhengzhong Liu and Eric Xing and John Thickstun and Arash Vahdat},
+      year={2025},
+      eprint={2506.01928},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2506.01928}, 
+}
+``` -->
