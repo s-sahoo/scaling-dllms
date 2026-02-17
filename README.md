@@ -24,7 +24,7 @@ In this repo, we release the state-of-the-art diffusion language models:
 
 For scaling-law experiments, set:
 * Algorithm: `DIR = ar / duo / esolm / mdlm`
-* Model size: `MODEL = 6M / 19M / ... / 2121M`  
+* Model size: `MODEL = 6M / 19M / ... / 2121M`  (full list in [`configs/flops`](configs/flops))
 * Training flops (`x1e18`):
 `FLOPS = 6 / 10 / 30 / 60 / 100`
 in the following command:
