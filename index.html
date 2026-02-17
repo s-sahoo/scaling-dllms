@@ -61,28 +61,29 @@
               <span class="author-block">
                 <a href="https://s-sahoo.github.io" target="_blank"><b >Subham Sekhar Sahoo</b><sup>1,2</sup></a>,</span>
                 <span class="author-block">
-                  <a href="https://scholar.google.com/citations?user=dJFuXCQAAAAJ&hl=fr" target="_blank">Jean-Marie Lamercier<sup>2</sup></a>,</span>
+                  <a href="https://scholar.google.com/citations?user=dJFuXCQAAAAJ&hl=fr" target="_blank">Jean-Marie Lamercier<sup>†&nbsp;1</sup></a>,</span>
                   <span class="author-block">
-                    <a href="https://zhihanyang2022.github.io" target="_blank">Zhihan Yang<sup>1</sup></a>,</span>
+                    <a href="https://zhihanyang2022.github.io" target="_blank">Zhihan Yang<sup>†&nbsp;4</sup></a>,</span>
                     <span class="author-block">
-                  <a href="https://jdeschena.github.io" target="_blank">Justin Deschenaux<sup>3</sup></a>,</span>
+                  <a href="https://jdeschena.github.io" target="_blank">Justin Deschenaux<sup>†&nbsp;3</sup></a>,</span>
                   <span class="author-block">
-                    <a href="https://jingyu6.github.io" target="_blank">Jingyu Liu<sup>4</sup></a>,</span>
+                    <a href="https://jingyu6.github.io" target="_blank">Jingyu Liu<sup>1</sup></a>,</span>
                       <span class="author-block">
-                        <a href="https://johnthickstun.com" target="_blank">John Thickstun<sup>1</sup></a>,</span>
+                        <a href="https://johnthickstun.com" target="_blank">John Thickstun<sup>4</sup></a>,</span>
                         <span class="author-block">
-                          <a href="https://scholar.google.com/citations?user=ZleK6ccAAAAJ&hl=en" target="_blank">Ante Jukic<sup>2</sup></a>
+                          <a href="https://scholar.google.com/citations?user=ZleK6ccAAAAJ&hl=en" target="_blank">Ante Jukic<sup>1</sup></a>
                   </span>
                   </div>
 
                   <div class="is-size-5 publication-authors">
                     <span class="author-block">
-                      <sup>1</sup>Cornell Tech, NY &nbsp;&nbsp;&nbsp;
-                      <sup>2</sup>NVIDIA, CA &nbsp;&nbsp;&nbsp;
-                      <sup>3</sup>EPFL, Lausanne &nbsp;&nbsp;&nbsp;
-                      <sup>4</sup>Cornell University, NY
+                      <sup>1</sup>NVIDIA &nbsp;&nbsp;&nbsp;
+                      <sup>2</sup>Cornell Tech &nbsp;&nbsp;&nbsp;
+                      <sup>3</sup>EPFL &nbsp;&nbsp;&nbsp;
+                      <sup>4</sup>Cornell University
+                      <br> <sup>†</sup>Joint Second Authors
                       <br> <b >Pre-print</b>
-                      <!-- <br> <b >[The blog-post will be ready by April 19, 2025.]</b> -->
+                      <br> <b >Model Checkpoints will be released on March 1st, 2026.</b>
                     </span>
                     
                   </div>
@@ -146,7 +147,6 @@
 
                         <p style="text-align: center; margin-top: 20px; font-size: 24px;">
                           <span>We claim that Masked diffusion <span style="color: maroon;"><b>isn't the future</b></span> of diffusion language models!</span> <br>
-                          <span>Model Checkpoints will be released <b>on March 1st, 2026.</b></span>
                         </p>
                         </a>
                       </span>
@@ -169,10 +169,11 @@
         <img src="static/images/scaling.png" alt="MY ALT TEXT" style="width: 65%; height: auto;"/>
       </div>
       <h4 class="subtitle has-text-centered">
-        We scale the following models.
-        <!-- While both are separate Markov processes, -->
-        <!-- The \(\texttt{arg max}\) operator transforms a Gaussian diffusion process into a uniform-state discrete diffusion process; see the paper for details. -->
-        <!-- The ELBOs of both processes are related by \Eqn{eqn:elbo_inequality}. -->
+        We perform scaling law analysis the <b>state-of-the-art</b> 
+        Masked diffusion model (<a href="https://arxiv.org/abs/2406.07524" target="_blank"><b>MDLM</b></a>), 
+        Uniform-state discrete diffusion (<a href="https://arxiv.org/abs/2506.10892" target="_blank"><b>Duo</b></a>), 
+        AR-Diffusion-Interpolating model (<a href="https://arxiv.org/abs/2506.01928" target="_blank"><b>Eso-LM</b></a>),
+        and <b>AR</b> models.
       </h4>
       <!-- <h4 class="subtitle has-text-centered">
         Duo (Ours) is orders of magnitude faster than Masked Diffusion and AR.
