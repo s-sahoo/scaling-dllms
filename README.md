@@ -5,65 +5,38 @@ By [Subham Sekhar Sahoo](https://s-sahoo.github.io), [Jean-Marie Lamercier](http
 [![deploy](https://img.shields.io/badge/Blog%20%20-8A2BE2)](http://s-sahoo.github.io/duo)
 [![arXiv](https://img.shields.io/badge/arXiv-2406.07524-red.svg)](https://arxiv.org/abs/2506.10892v1)
 
+# Update: 1.7B Checkpoints will be released on March 1st, 2026.
+
+<img src="https://github.com/s-sahoo/scaling-dllms/blob/gh-pages/static/images/scaling.png" alt="graphical_abstract_updated_2" width="70%">
+
+
+In this repo, we release the state-of-the-art diffusion language models:
+1. **Masked Diffusion Model: MDLM**
+    Sahoo et al., "Simple and Effective Masked Diffusion Language Model", NeurIPS 2024.
+2. **Uniform-state Diffusion Model: Duo**
+    Sahoo et al., "The Diffusion Duality", ICML 2025.
+3. **AR-MDLM interpolating method: Eso-LMs**
+    Sahoo et al., "Esoteric Language Models", ArXiv 2025.
+
+# Scaling Laws
+
+For scaling law experiments use the following command:
+* Specify the algorithm with `DIR = ar / duo / esolm / mdlm`
+* Specify the Model size with: `MODEL = 6M / 19M / ... / 2121M`  
+* Specify the training flops (`x1e18`) with
+`FLOPS = 6 / 10 / 30 / 60 / 100`
+```
+./auto_resubmit.sh -n 5 -m <MODEL> -f <FLOPS> -b 32 -N 1 -t chinchilla-mdlm-v1 scripts/<DIR>/train_slim_mdlm.sh 
+```
 
 # 1.7B Models
 
-## Checkpoints will be released on March 1st, 2026.
-
 ## Training
-
+`DIR = {ar/duo/esolm/mdlm}`
 ```
-./auto_resubmit.sh -n 10  -m 2121M -b 2 -N 16 -D nvidia -p 2 -t ar scripts/ar/train.sh 
-./auto_resubmit.sh -n 10  -m 2121M -b 2 -N 16 -D nvidia -p 2 -t mdlm scripts/mdlm/train.sh 
+./auto_resubmit.sh -n 10  -m 2121M -b 2 -N 16 -D nvidia -p 2 -t ar scripts/<DIR>/train.sh 
 ```
 
-## Scaling Laws
+## Evaluation
 
-```
-./auto_resubmit.sh -n 5 -m 6M -f 6 -b 32 -N 1 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 34M -f 6 -b 32 -N 1 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 66M -f 6 -b 32 -N 1 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 85M -f 6 -b 32 -N 1 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 113M -f 6 -b 32 -N 1 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 170M -f 6 -b 16 -N 2 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 336M -f 6 -b 16 -N 2 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 666M -f 6 -b 8 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-
-
-./auto_resubmit.sh -n 5 -m 19M -f 10 -b 32 -N 1 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 48M -f 10 -b 32 -N 1 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 85M -f 10 -b 32 -N 1 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 170M -f 10 -b 16 -N 2 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 206M -f 10 -b 16 -N 2 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 666M -f 10 -b 8 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 944M -f 10 -b 4 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-
-
-
-./auto_resubmit.sh -n 5 -m 66M -f 30 -b 32 -N 1 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 142M -f 30 -b 32 -N 1 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 231M -f 30 -b 16 -N 2 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 472M -f 30 -b 16 -N 2 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 666M -f 30 -b 8 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 944M -f 30 -b 4 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 1233M -f 30 -b 4 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 1476M -f 30 -b 4 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 2121M -f 30 -b 2 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-
-
-
-./auto_resubmit.sh -n 5 -m 142M -f 60 -b 32 -N 1 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 231M -f 60 -b 16 -N 2 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 472M -f 60 -b 16 -N 2 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 666M -f 60 -b 8 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 1233M -f 60 -b 4 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 1476M -f 60 -b 4 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 2121M -f 60 -b 2 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-
-
-./auto_resubmit.sh -n 5 -m 231M -f 100 -b 16 -N 2 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 472M -f 100 -b 16 -N 2 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 666M -f 100 -b 8 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 1233M -f 100 -b 4 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-./auto_resubmit.sh -n 5 -m 2121M -f 100 -b 2 -N 4 -t chinchilla-mdlm-v1 scripts/mdlm/train_slim_mdlm.sh 
-```
+ 1.7B Checkpoints will be released on March 1st, 2026.
