@@ -21,23 +21,37 @@ In this repo, we release the `state-of-the-art` diffusion language models:
     > [Sahoo et al., "Esoteric Language Models", arXiv 2025.](https://arxiv.org/abs/2506.01928)
 
 # Scaling Laws
+### Dataset
+We pre-train on [SlimPajama](https://www.cerebras.ai/blog/slimpajama-a-627b-token-cleaned-and-deduplicated-version-of-redpajama). 
+
+1. Preprocess it using [TinyLlama's codebase](https://github.com/jzhang38/TinyLlama/blob/main/PRETRAIN.md).
+2. Place the data chunks in your chosen directory and [auto_resubmit.sh](auto_resubmit.sh) to that path.
+
+### Training
 
 For scaling-law experiments, set:
-* Algorithm: `DIR = ar / duo / esolm / mdlm`
+* Algorithm: `ALGO = ar / mdlm / esolm / duo`
 * Model size: `MODEL = 6M / 19M / ... / 2121M`  ([Full list](configs/flops))
 * Training flops (`x1e18`):
 `FLOPS = 6 / 10 / 30 / 60 / 100`
 in the following command:
 ```
-./auto_resubmit.sh -n 5 -m <MODEL> -f <FLOPS> -b 32 -N 1 -t chinchilla-mdlm-v1 scripts/<DIR>/train_slim_mdlm.sh 
+./auto_resubmit.sh -n 5 -m <MODEL> -f <FLOPS> -b 32 -N 1 -t chinchilla-mdlm scripts/<ALGO>/train_slim_mdlm.sh 
 ```
 
 # 1.7B Models
 
-## Training
-`DIR = {ar/duo/esolm/mdlm}`
+### Dataset
+We use Nvidia's [Nemotron-Pre-Training-Dataset](https://arxiv.org/abs/2508.14444) for pre-training the models which is now available on [HuggingFace](https://huggingface.co/datasets/nvidia/Nemotron-CC-v2).
+
+### Training
+
+To train the `1.7B` (non-embedding parameters) model, set:
+1. Algorithm: `ALGO = ar / mdlm / esolm / duo` 
+2. Phase: `PHASE = 1 / 2`
+in the following command:
 ```
-./auto_resubmit.sh -n 10  -m 2121M -b 2 -N 16 -D nvidia -p 2 -t ar scripts/<DIR>/train.sh 
+./auto_resubmit.sh -n 10  -m 2121M -b 2 -N 16 -D nvidia -p <PHASE> -t ar scripts/<ALGO>/train.sh 
 ```
 
 ## Evaluation
