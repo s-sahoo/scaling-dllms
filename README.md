@@ -34,6 +34,7 @@ For scaling-law experiments, set:
 * Model size: `MODEL = 6M / 19M / ... / 2121M`  ([Full list](configs/flops))
 * Training flops (`x1e18`):
 `FLOPS = 6 / 10 / 30 / 60 / 100`
+
 in the following command:
 ```
 ./auto_resubmit.sh -n 5 -m <MODEL> -f <FLOPS> -b 32 -N 1 -t chinchilla-mdlm scripts/<ALGO>/train_slim_mdlm.sh 
