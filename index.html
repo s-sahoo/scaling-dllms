@@ -94,7 +94,7 @@
 
                         <!-- ArXiv abstract Link -->
                         <span class="link-block">
-                          <a href="" target="_blank"
+                          <a href="https://arxiv.org/abs/2602.15014" target="_blank"
                           class="external-link button is-normal is-rounded is-dark">
                           <span class="icon">
                             <i class="ai ai-arxiv"></i>
@@ -146,7 +146,7 @@
                         </span> -->
 
                         <p style="text-align: center; margin-top: 20px; font-size: 24px;">
-                          <span>We claim that Masked diffusion <span style="color: maroon;"><b>isn't the future</b></span> of diffusion language models!</span> <br>
+                          <span>We show that Masked diffusion <span style="color: maroon;"><b>isn't the future paradigm</b></span> for diffusion LLMs!</span> <br>
                         </p>
                         </a>
                       </span>
@@ -223,36 +223,110 @@
 
 
 <!-- Paper abstract -->
-<!-- <section class="section hero is-light">
+<section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Key Innovations</h2>
+        <h2 class="title is-3">Key Contributions</h2>
         <ol>
           <li>
-            We show that <b>uniform-state discrete diffusion emerges from Gaussian diffusion</b>,
-            enabling the transfer of techniques from continuous to discrete domains.
+            We present the <b>first systematic IsoFLOP scaling study</b> 
+            for a state-of-the-art Uniform-state diffusion model (Duo) 
+            and an interpolating diffusion model (Eso-LM). 
           </li>
           <li>
-            Building on this insight, we propose the DUO framework,
-            which improves training through a low-variance curriculum.
+            We <b>improve the scaling laws of MDLM</b> by training with a simple cross-entropy loss, 
+            which makes these models 12% more compute efficient.
           </li>
           <li>
-            We further introduce Discrete Consistency Distillation, adapting consistency
-            distillation to the discrete setting and accelerating DUO sampling
-            by <b>two orders</b> of magnitude.
+            We show that <b>perplexity can be a misleading metric</b> while comparing diffusion families: 
+            models with worse likelihood scaling may still be 
+            preferable due to faster sampling, 
+            as reflected by the speed-quality Pareto frontier (see <a href="#fig:quality-throughput" style="color: rgb(46, 106, 237);">Figure 1</a>).
+          </li>
+          <li>
+            We scale all methods to <b>1.7B</b> parameters and show that 
+            <b>Duo beats MDLM on GSM8K</b> (see <a href="#fig:gsm8k" style="color: rgb(46, 106, 237);">Table 1</a>), 
+            despite worse validation perplexity.
           </li>
         </ol>
       </div>
     </div>
   </div>
-</section> -->
+</section>
 <!-- End paper abstract -->
 
-
+<section class="section" id="Experiments">
+  <div class="container is-max-desktop">
+     <div class="content is-medium">
+        <h2 class="title">Experiments</h2>
+        <h4> Speed-Quality Pareto Frontier</h4>
+           <div style="text-align: center;">
+              <img src="static/images/pareto.png" alt="MY ALT TEXT" style="width: 50%; height: auto;" id="fig:quality-throughput"/>
+              <figcaption style="margin-top:0.5em; font-size:0.8em; color:#444;">
+                <b>Figure 1:</b> We report the highest throughput achieved by compute-optimal 
+                models across a range of training FLOPs budgets. 
+                AR produces the highest-quality samples but is slow. 
+                Sample diversity (measured by entropy) remains broadly similar across algorithms, 
+                with Duo exhibiting slightly reduced diversity. 
+                <b>Duo dominates in the throughput ranges [200, 400] ∪ [600, ∞]</b>,
+                 while <b>Eso-LM dominates in the range [400, 600]</b>.
+              </figcaption>
+           </div>
+           <br>
+        <h4>GSM8K @ 1.7B scale</h4>
+        <style type="text/css">
+          .tg  {border-collapse:collapse;border-spacing:0;}
+          .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+            overflow:hidden;padding:10px 5px;word-break:normal;}
+          .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+            font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+          .tg .tg-baqh{text-align:center;vertical-align:top}
+          .tg .tg-0lax{text-align:left;vertical-align:top}
+          </style>
+          <table class="tg"  id="fig:gsm8k"><thead>
+            <caption style="caption-side:bottom; text-align:left; margin-top:0.5em; font-size:0.9em; color:#444;">
+              <b>Table 1:</b> SMDM (<a href="https://arxiv.org/abs/2410.18514" target="_blank">Nie et al., 2024</a>) 
+              is trained on SlimPajama while LLaDa (<a href="https://arxiv.org/pdf/2502.09992" target="_blank">Nie et al., 2025</a>)
+               on proprietary dataset. 
+              Our models are trained on the Nemotron-Pre-Training-Dataset. 
+            </caption>
+            <tr>
+              <th class="tg-0lax">Models</th>
+              <th class="tg-baqh">SMDM</th>
+              <th class="tg-baqh">LLaDa</th>
+              <th class="tg-baqh">AR (Ours)</th>
+              <th class="tg-baqh"><span style="font-weight:400;font-style:normal;text-decoration:none">MDLM (Ours)</span></th>
+              <th class="tg-baqh"><span style="font-weight:400;font-style:normal;text-decoration:none">Eso-LM (Ours)</span></th>
+              <th class="tg-baqh"><span style="font-weight:400;font-style:normal;text-decoration:none">Duo (Ours)</span></th>
+            </tr></thead>
+          <tbody>
+            <tr>
+              <td class="tg-0lax">Params</td>
+              <td class="tg-baqh">1B</td>
+              <td class="tg-baqh">8B</td>
+              <td class="tg-baqh">1.7B</td>
+              <td class="tg-baqh"><span style="font-weight:400;font-style:normal;text-decoration:none">1.7B</span></td>
+              <td class="tg-baqh"><span style="font-weight:400;font-style:normal;text-decoration:none">1.7B</span></td>
+              <td class="tg-baqh"><span style="font-weight:400;font-style:normal;text-decoration:none">1.7B</span></td>
+            </tr>
+            <tr>
+              <td class="tg-0lax">GSM8K (&#8593;)</td>
+              <td class="tg-baqh">58.5</td>
+              <td class="tg-baqh">70.7</td>
+              <td class="tg-baqh">62.9</td>
+              <td class="tg-baqh">58.8</td>
+              <td class="tg-baqh">33.4</td>
+              <td class="tg-baqh"><span style="font-weight:bold">65.8</span></td>
+            </tr>
+          </tbody></table>
+           
+     </div>
+  </div>
+</section>
 
 <!--BibTex citation -->
-<!-- <section class="section" id="BibTeX">
+<section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
 
@@ -260,13 +334,14 @@
       <button onclick="copyBibTeX()" style="position: absolute; top: 10px; right: 10px; z-index: 1;">
         Copy
       </button>
-      <pre><code id="bibtex-code">@inproceedings{
-  sahoo2025the,
-  title={The Diffusion Duality},
-  author={Subham Sekhar Sahoo and Justin Deschenaux and Aaron Gokaslan and Guanghan Wang and Justin T Chiu and Volodymyr Kuleshov},
-  booktitle={Forty-second International Conference on Machine Learning},
-  year={2025},
-  url={https://openreview.net/forum?id=9P9Y8FOSOk}
+      <pre><code id="bibtex-code">@misc{sahoo2026scalingmaskeddiffusionlanguage,
+      title={Scaling Beyond Masked Diffusion Language Models}, 
+      author={Subham Sekhar Sahoo and Jean-Marie Lemercier and Zhihan Yang and Justin Deschenaux and Jingyu Liu and John Thickstun and Ante Jukic},
+      year={2026},
+      eprint={2602.15014},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2602.15014}, 
 }</code></pre>
     </div>
   </div>
@@ -279,7 +354,7 @@
       alert("BibTeX copied to clipboard!");
     });
   }
-</script> -->
+</script>
 <!--End BibTex citation -->
 
 
