@@ -1,4 +1,4 @@
-# [Scaling Beyond Masked Diffusion Language Models](https://arxiv.org/abs/2602.15014)
+# [Scaling Beyond Masked Diffusion Language Models (ICML 2026)](https://arxiv.org/abs/2602.15014)
 By [Subham Sekhar Sahoo](https://s-sahoo.github.io), [Jean-Marie Lamercier](https://scholar.google.com/citations?user=dJFuXCQAAAAJ&hl=fr), [Justin Deschenaux](https://jdeschena.com), [Zhihan Yang](https://zhihanyang2022.github.io), [Jingyu Liu](https://jingyu6.github.io),
 [John Thickstun](https://johnthickstun.com), [Ante Jukic](https://scholar.google.com/citations?user=ZleK6ccAAAAJ&hl=en)
 
