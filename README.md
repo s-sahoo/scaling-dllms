@@ -66,13 +66,12 @@ This repository was built off of [MDLM](https://github.com/kuleshov-group/mdlm),
 
 ## Citation
 ```
-@misc{sahoo2026scalingmaskeddiffusionlanguage,
-      title={Scaling Beyond Masked Diffusion Language Models}, 
-      author={Subham Sekhar Sahoo and Jean-Marie Lemercier and Zhihan Yang and Justin Deschenaux and Jingyu Liu and John Thickstun and Ante Jukic},
-      year={2026},
-      eprint={2602.15014},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2602.15014}, 
+@inproceedings{
+  sahoo2026scaling,
+  title={Scaling Beyond Masked Diffusion Language Models},
+  author={Subham Sekhar Sahoo and Jean-Marie Lemercier and Zhihan Yang and Justin Deschenaux and Jingyu Liu and John Thickstun and Ante Juki{\'c}},
+  booktitle={Forty-third International Conference on Machine Learning},
+  year={2026},
+  url={https://openreview.net/forum?id=xKJG1CNtQM}
 }
 ```
