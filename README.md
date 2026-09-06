@@ -4,6 +4,10 @@ By [Subham Sekhar Sahoo](https://s-sahoo.github.io), [Jean-Marie Lamercier](http
 
 [![deploy](https://img.shields.io/badge/Blog%20%20-8A2BE2)](http://s-sahoo.github.io/scaling-dllms)
 [![arXiv](https://img.shields.io/badge/arXiv-2406.07524-red.svg)](https://arxiv.org/abs/2602.15014)
+[![deploy](https://img.shields.io/badge/Huggingface%20-AR%20-blue)](https://huggingface.co/collections/kuleshov-group/mdlm-6671bee1cc71f0dce4f2d00a)
+[![deploy](https://img.shields.io/badge/Huggingface%20-MDLM%20-blue)](https://huggingface.co/collections/kuleshov-group/mdlm-6671bee1cc71f0dce4f2d00a)
+[![deploy](https://img.shields.io/badge/Huggingface%20-DUO%20-blue)](https://huggingface.co/collections/kuleshov-group/mdlm-6671bee1cc71f0dce4f2d00a)
+[![deploy](https://img.shields.io/badge/Huggingface%20-EsoLM%20-blue)](https://huggingface.co/collections/kuleshov-group/mdlm-6671bee1cc71f0dce4f2d00a)
 
 # Update: 1.7B Checkpoints will be released on March 1st, 2026.
 
