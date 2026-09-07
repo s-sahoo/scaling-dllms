@@ -9,7 +9,7 @@ By [Subham Sekhar Sahoo](https://s-sahoo.github.io), [Jean-Marie Lamercier](http
 [![deploy](https://img.shields.io/badge/Huggingface%20-DUO%20-blue)](https://huggingface.co/collections/kuleshov-group/mdlm-6671bee1cc71f0dce4f2d00a)
 [![deploy](https://img.shields.io/badge/Huggingface%20-EsoLM%20-blue)](https://huggingface.co/collections/kuleshov-group/mdlm-6671bee1cc71f0dce4f2d00a)
 
-# Update: 1.7B Checkpoints will be released on March 1st, 2026.
+# Update Sep 6, 2026: The pre-trained checkpoints are on [HF](https://huggingface.co/collections/s-sahoo/sdllm).
 
 <p align="center">
   <img src="https://github.com/s-sahoo/scaling-dllms/blob/gh-pages/static/images/scaling.png" alt="graphical_abstract_updated_2" width="70%">
